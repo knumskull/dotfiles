@@ -45,7 +45,11 @@ _isroot=false
 
       export PS1="$GY[$Y\u$GY@$P\h$GY:$B\W\$(__git_ps1 \"$GY|$LB%s\")$GY]$W\$(get_prompt_symbol) "
     else
-      export PS1="$GY[$Y\u$GY@$P\h$GY:$B\W$GY]$W\$(get_prompt_symbol) "
+      if [[ $UID == 0 ]]; then
+        export PS1="$W($LB\t$W) $W- $GY[$R\u$GY@$P\h$GY:$B\W$GY]$W\n\#\$(get_prompt_symbol) "
+      else
+        export PS1="$W($LB\t$W) $W- $GY[$Y\u$GY@$P\h$GY:$B\W$GY]$W\n\#\$(get_prompt_symbol) "
+      fi
     fi
   else
     export TERM='xterm-color'
