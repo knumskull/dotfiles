@@ -114,6 +114,14 @@ _isroot=false
       export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
     fi
   #}}}
+  ## VIRTUALENVWRAPPER #{{{
+    if [[ -f /usr/bin/virtualenvwrapper.sh ]]; then
+      export WORKON_HOME=$HOME/.virtualenvs
+      export PROJECT_HOME=$HOME/development
+      source /usr/bin/virtualenvwrapper.sh
+    fi
+  #}}}
+
 #}}}
 ## ALIAS {{{
   alias freemem='sudo /sbin/sysctl -w vm.drop_caches=3'
