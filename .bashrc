@@ -46,15 +46,22 @@ _isroot=false
       export PS1="$GY[$Y\u$GY@$P\h$GY:$B\W\$(__git_ps1 \"$GY|$LB%s\")$GY]$W\$(get_prompt_symbol) "
     else
       if [[ $UID == 0 ]]; then
-        export PS1="$W($LB\t$W) $W- $GY[$R\u$GY@$P\h$GY:$B\W$GY]$W\n\#\$(get_prompt_symbol) "
+        export PS1="$W($LB\t$W) $W- $GY[$R\u$GY@$P\h$GY:$B\w$GY]$W\n\#\$(get_prompt_symbol) "
       else
-        export PS1="$W($LB\t$W) $W- $GY[$Y\u$GY@$P\h$GY:$B\W$GY]$W\n\#\$(get_prompt_symbol) "
+        export PS1="$W($LB\t$W) $W- $GY[$Y\u$GY@$P\h$GY:$B\w$GY]$W\n\#\$(get_prompt_symbol) "
       fi
     fi
   else
     export TERM='xterm-color'
   fi
+
+  # including this ensures that new gnome-terminal tabs keep the parent `pwd` !
+  if [ -e /etc/profile.d/vte.sh ]; then
+      . /etc/profile.d/vte.sh
+  fi
+
 #}}}
+
 ## BASH OPTIONS {{{
   shopt -s cdspell                 # Correct cd typos
   shopt -s checkwinsize            # Update windows size on command
@@ -637,3 +644,5 @@ _isroot=false
     fi
   #}}}
 #}}}
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
